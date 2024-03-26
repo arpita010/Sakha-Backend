@@ -35,7 +35,10 @@ public class ChatController {
       chatResponse.setMessage(chatRequest.getMessage());
       chatResponse.setSakhaResponse(sakhaChatResponse.getSakhaResponse());
       chatService.saveChat(chatResponse, chatRequest.getUserId());
+      return ResponseEntity.status(HttpStatus.OK).body(chatResponse);
+    } else {
+      throw new HttpClientErrorException(
+          HttpStatus.BAD_REQUEST, "Some Error occured while messaging...");
     }
-    return ResponseEntity.status(HttpStatus.OK).body(chatResponse);
   }
 }
