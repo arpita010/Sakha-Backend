@@ -30,4 +30,8 @@ public class ChatService {
     chat.setChatDate(new Date());
     return chatRepo.save(chat);
   }
+  public List<Chat> findAllByUserId(Long userId)
+  {
+    return chatRepo.findAllByUserId(userId);
+  }
 }
