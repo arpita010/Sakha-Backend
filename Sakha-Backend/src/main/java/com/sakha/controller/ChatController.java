@@ -41,4 +41,12 @@ public class ChatController {
           HttpStatus.BAD_REQUEST, "Some Error occured while messaging...");
     }
   }
+
+  @GetMapping("/fetch/user/{userId}")
+  public ResponseEntity<List<Chat>> findAllChatsByUserId(@PathVariable("userId") Long userId) {
+    List<Chat> list = chatService.findAllByUserId(userId);
+    if (list == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    return ResponseEntity.status(HttpStatus.OK).body(list);
+  }
+  
 }
